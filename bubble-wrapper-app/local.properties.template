@@ -1,0 +1,11 @@
+# Bubble Wrapper Local Properties Template
+# Copy this to local.properties and fill in your values
+# ⚠️ NEVER commit local.properties to git!
+
+# Android SDK path (usually auto-filled by Android Studio)
+sdk.dir=/path/to/your/android/sdk
+
+# Helius RPC API Key (optional but recommended for reliability)
+# Sign up for free at: https://www.helius.dev/
+# Leave empty to use public Solana RPC
+HELIUS_API_KEY=

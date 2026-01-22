@@ -1,0 +1,55 @@
+{
+  "name": "MonkeMob",
+  "symbol": "MONKE",
+  "description": "MonkeMob is a community-driven Solana NFT collection featuring unique monkey characters. Join the mob and explore Web3 gaming!",
+  "image": "https://monkemob.me/icons/icon-512.png",
+  "external_url": "https://monkemob.me",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "NFT"
+    },
+    {
+      "trait_type": "Blockchain",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Type",
+      "value": "dApp"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://monkemob.me/icons/icon-512.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "GGVjQqnriuUdeLPoadfrV6CrpToYPmDquSBqdFpYhBts",
+        "share": 100
+      }
+    ]
+  },
+  "collection": {
+    "name": "Solana dApp Store",
+    "family": "MonkeMob"
+  },
+  "appMetadata": {
+    "packageId": "me.monkemob.twa",
+    "version": "1.0.0",
+    "versionCode": 1,
+    "category": "NFT",
+    "screenshots": [
+      "ar://djF8ItXtXYq2Fb27cqyUWdu0T6Mswe5BtiYR3yrx-2g",
+      "ar://LxwaC8VaRixML2S1pWHVtcm7esM19f_OxK5Zbi3tHBk",
+      "ar://pRYHHZOGYeL0vbpphYX-x8JbTT_v5Wlgv80U8YIPbR0"
+    ],
+    "banner": "https://monkemob.me/icons/icon-512.png",
+    "shortDescription": "On-chain Solana NFT collection",
+    "website": "https://monkemob.me",
+    "whatsNew": "Initial release of MonkeMob dApp on Solana Mobile"
+  }
+}

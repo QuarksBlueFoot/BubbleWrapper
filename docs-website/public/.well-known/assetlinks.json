@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "xyz.bluefoot.bubblewrapper",
+    "sha256_cert_fingerprints": ["78:F4:82:EF:70:6F:2A:22:62:45:C7:EA:EB:A1:9F:47:57:A6:1F:B2:6D:13:91:6F:58:78:0A:42:E5:6F:FA:C0"]
+  }
+}]

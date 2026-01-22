@@ -1,0 +1,48 @@
+:root{
+  --bg:#0B0F1A;
+  --panel:#121A2A;
+  --text:#E6E9F2;
+  --muted:#9AA5BF;
+  --accent:#7CFFB2;
+  --danger:#FF5C7A;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height:100%; overscroll-behavior: none; }
+body{ background: var(--bg); color: var(--text); }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; }
+
+.safe{
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+.safeTop{ padding-top: max(16px, env(safe-area-inset-top)); }
+.safeBottom{ padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.kbd{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--muted);
+}

@@ -1,0 +1,81 @@
+# Bubble Wrapper - Git Ignore
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.gradle/
+build/
+local.properties
+
+# Compiled
+*.class
+*.apk
+*.aab
+*.dex
+
+# Logs
+*.log
+*.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keys & Secrets - NEVER COMMIT THESE
+*.keystore
+*.jks
+*.p12
+*.pem
+key*
+android.keystore
+secrets.properties
+*-release.keystore
+monkemob*.keystore
+bubblewrapper*.keystore
+
+# Wallet files
+*wallet*.txt
+*keypair*.json
+*secret*.json
+
+# Android SDK (too large, install locally)
+android-sdk/
+
+# Node modules (sample-pwa)
+node_modules/
+dist/
+.cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Downloads and temp files
+DOWNLOADS/
+IMG_*.PNG
+output-*.png
+
+# Log dumps
+sample-pwa/android-twa/*.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Python scripts with hardcoded keys (dev/test only)
+publish_cli.py
+publish_cli_sdk.py
+test_devnet_*.py
+upload_to_arweave.py
+
+# Test summary files
+*_SUMMARY.txt
+*_TEST_SUMMARY.txt
+
+# Documentation with sensitive commands (local dev only)
+ARWEAVE_UPLOAD.md
+MONKEMOB_PUBLISHING.md
+READY_TO_PUBLISH.md
+PRODUCTION_MAINNET_READY.md
+PUBLISHING_FINAL_STATUS.md

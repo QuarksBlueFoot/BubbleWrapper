@@ -1,0 +1,56 @@
+{
+  "packageId": "me.monkemob.twa",
+  "host": "monkemob.me",
+  "name": "MonkeMob SagaMonke Companion Dapp",
+  "launcherName": "MonkeMob",
+  "display": "standalone",
+  "themeColor": "#FFD700",
+  "themeColorDark": "#1a1a1a",
+  "navigationColor": "#0A0A0A",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#FFD700",
+  "navigationDividerColorDark": "#FFD700",
+  "backgroundColor": "#000000",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://monkemob.me/icons/icon-512.png",
+  "maskableIconUrl": "https://monkemob.me/icons/icon-512-maskable.png",
+  "monochromeIconUrl": "https://www.monkemob.me/icons/icon-48-monochrome.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/workspaces/BubbleWrapper/sample-pwa/android-twa/monkemob-release.keystore",
+    "alias": "monkemob"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://monkemob.me/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://monkemob.me/",
+  "minSdkVersion": 24,
+  "orientation": "default",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "focus-existing",
+  "displayOverride": ["standalone", "minimal-ui"],
+  "appVersion": "1",
+  "_comment": "Mobile-optimized TWA: Chrome preferred, portrait orientation, enhanced splash screen"
+}

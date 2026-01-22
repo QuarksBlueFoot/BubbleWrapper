@@ -1,0 +1,50 @@
+{
+  "packageId": "xyz.bluefoot.bubblewrapper.sample",
+  "host": "bubblewrapper.bluefoot.xyz",
+  "name": "Mobile-Optimized PWA Sample",
+  "launcherName": "PWA Sample",
+  "display": "standalone",
+  "themeColor": "#0B0F1A",
+  "themeColorDark": "#0B0F1A",
+  "navigationColor": "#0B0F1A",
+  "navigationColorDark": "#0B0F1A",
+  "navigationDividerColor": "#0B0F1A",
+  "navigationDividerColorDark": "#0B0F1A",
+  "backgroundColor": "#0B0F1A",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://bubblewrapper.bluefoot.xyz/icons/icon-512.png",
+  "maskableIconUrl": "https://bubblewrapper.bluefoot.xyz/icons/icon-512-maskable.png",
+  "splashScreenFadeOutDuration": 300,
+  "splashScreenBackgroundColor": "#0B0F1A",
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://bubblewrapper.bluefoot.xyz/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {
+    "playBilling": false
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://bubblewrapper.bluefoot.xyz/",
+  "minSdkVersion": 21,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "1"
+}

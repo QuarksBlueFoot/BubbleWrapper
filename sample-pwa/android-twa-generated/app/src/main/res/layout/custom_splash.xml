@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:animateLayoutChanges="true">
+
+    <!-- Scanline effect overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#001a0d"
+        android:alpha="0.3" />
+
+    <!-- Main content container -->
+    <LinearLayout
+        android:id="@+id/splash_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <!-- Terminal border frame -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/terminal_border"
+            android:padding="40dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Circular icon container -->
+            <FrameLayout
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginBottom="32dp">
+                
+                <!-- Gold circle background -->
+                <View
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:background="@drawable/splash_icon_circle" />
+                
+                <!-- Circular masked icon -->
+                <ImageView
+                    android:id="@+id/splash_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/launcherName"
+                    android:src="@mipmap/ic_maskable"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- Terminal prompt line -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pixel_font"
+                    android:text=">"
+                    android:textColor="#00FF00"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/splash_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pixel_font"
+                    android:text="MONKEMOB"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:letterSpacing="0.05" />
+            </LinearLayout>
+
+            <!-- Blinking cursor -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pixel_font"
+                    android:text=">"
+                    android:textColor="#00FF00"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pixel_font"
+                    android:text="LOADING"
+                    android:textColor="#00FF00"
+                    android:textSize="14sp"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:id="@+id/cursor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pixel_font"
+                    android:text="_"
+                    android:textColor="#00FF00"
+                    android:textSize="14sp"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

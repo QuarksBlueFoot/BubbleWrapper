@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Terminal-style splash screen with custom MonkeMob images and falling bananas -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
+    <!-- Pure black background -->
+    <item android:drawable="@color/splash_background" />
+    
+    <!-- Terminal green scanline effect -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:centerColor="#00000000"
+                android:endColor="#001a0d"
+                android:startColor="#001a0d"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- Saga MonkeMob Logo at top center (square logo) -->
+    <item
+        android:width="180dp"
+        android:height="180dp"
+        android:gravity="center_horizontal|top"
+        android:top="40dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/saga_monke_logo" />
+    </item>
+    
+    <!-- Gold circular background for MonkeMob icon -->
+    <item
+        android:width="140dp"
+        android:height="140dp"
+        android:gravity="center"
+        android:top="60dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFD700" />
+            <stroke
+                android:width="3dp"
+                android:color="#FFA500" />
+        </shape>
+    </item>
+    
+    <!-- Circular MonkeMob icon centered below logo -->
+    <item
+        android:width="120dp"
+        android:height="120dp"
+        android:gravity="center"
+        android:top="60dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/splash_monke" />
+    </item>
+    
+    <!-- Banana 1 - top left -->
+    <item
+        android:width="32dp"
+        android:height="32dp"
+        android:gravity="start|top"
+        android:left="24dp"
+        android:top="140dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.7" />
+    </item>
+    
+    <!-- Banana 2 - top right -->
+    <item
+        android:width="36dp"
+        android:height="36dp"
+        android:gravity="end|top"
+        android:right="32dp"
+        android:top="180dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.65" />
+    </item>
+    
+    <!-- Banana 3 - left side -->
+    <item
+        android:width="30dp"
+        android:height="30dp"
+        android:gravity="start|center_vertical"
+        android:left="16dp"
+        android:top="-40dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.8" />
+    </item>
+    
+    <!-- Banana 4 - right side -->
+    <item
+        android:width="34dp"
+        android:height="34dp"
+        android:gravity="end|center_vertical"
+        android:right="20dp"
+        android:top="60dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.7" />
+    </item>
+    
+    <!-- Banana 5 - bottom left -->
+    <item
+        android:width="32dp"
+        android:height="32dp"
+        android:gravity="start|bottom"
+        android:left="40dp"
+        android:bottom="120dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.75" />
+    </item>
+    
+    <!-- Banana 6 - bottom right -->
+    <item
+        android:width="30dp"
+        android:height="30dp"
+        android:gravity="end|bottom"
+        android:right="28dp"
+        android:bottom="160dp">
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/banana_webp"
+            android:alpha="0.6" />
+    </item>
+    
+</layer-list>

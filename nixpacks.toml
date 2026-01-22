@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["cd sample-pwa/web && npm ci --legacy-peer-deps --ignore-scripts"]
+
+[phases.build]
+cmds = ["cd sample-pwa/web && npm run build"]
+
+[start]
+cmd = "npx serve sample-pwa/web/dist -s -l ${PORT:-3000}"

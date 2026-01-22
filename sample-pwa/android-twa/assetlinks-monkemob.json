@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "me.monkemob.twa",
+    "sha256_cert_fingerprints": ["REPLACE_WITH_MONKEMOB_KEYSTORE_SHA256"]
+  }
+}]

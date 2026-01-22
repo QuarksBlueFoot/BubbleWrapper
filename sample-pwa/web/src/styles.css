@@ -1,0 +1,285 @@
+:root{
+  --bg:#0B0F1A;
+  --bg-gradient: linear-gradient(135deg, #0B0F1A 0%, #131B2E 50%, #0D1220 100%);
+  --panel:#121A2A;
+  --text:#E6E9F2;
+  --muted:#9AA5BF;
+  --accent:#9945FF;
+  --accent-glow: rgba(153, 69, 255, 0.4);
+  --secondary:#14F195;
+  --secondary-glow: rgba(20, 241, 149, 0.3);
+  --danger:#FF5C7A;
+  --shadow: 0 8px 32px rgba(0,0,0,.4);
+  --shadow-glow: 0 0 40px rgba(153, 69, 255, 0.15);
+  --radius: 20px;
+  --radius-lg: 28px;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(18, 26, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(20px);
+  --glass-saturate: saturate(180%);
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height:100%; overscroll-behavior: none; }
+body{ 
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text); 
+}
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; cursor: pointer; }
+button:active { transform: scale(0.98); }
+
+.safe{
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+.safeTop{ padding-top: max(16px, env(safe-area-inset-top)); }
+.safeBottom{ padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+/* 2025 Glassmorphism Cards */
+.card{
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur) var(--glass-saturate);
+  -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturate);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow), var(--shadow-glow);
+}
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card-glow:hover::before {
+  opacity: 0.5;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.kbd{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.5);
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--secondary);
+}
+
+/* Solana Gradient Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent) 0%, #7B3FE4 50%, var(--secondary) 100%);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px var(--accent-glow), 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  animation: gradient-shift 3s ease infinite;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-glow), 0 4px 12px rgba(0,0,0,0.4);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Secondary Button - Glass */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+}
+
+/* Animated Gradient Border */
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--accent), var(--secondary), var(--accent));
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+}
+.gradient-border > * {
+  background: var(--bg);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+/* Status Indicator */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.status-dot.success { background: var(--secondary); color: var(--secondary); }
+.status-dot.warning { background: #FFB800; color: #FFB800; }
+.status-dot.error { background: var(--danger); color: var(--danger); }
+
+/* Spinner for loading state */
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(153, 69, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 0.8s ease-in-out infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  100% { left: 100%; }
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float { animation: float 3s ease-in-out infinite; }
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.pulse { animation: pulse 2s ease-in-out infinite; }
+
+/* Gradient Button - Wallet Connect */
+.gradient-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent) 0%, #7B3FE4 50%, var(--secondary) 100%);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px var(--accent-glow), 0 2px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  animation: gradient-shift 3s ease infinite;
+  cursor: pointer;
+}
+.gradient-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-glow), 0 4px 12px rgba(0,0,0,0.4);
+}
+.gradient-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Splash styles for index.html (inlined there, but good to have reference) */
+#splash {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-gradient);
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+#splash.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}

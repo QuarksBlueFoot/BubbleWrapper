@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Background gradient simulation with circles -->
+    <path
+        android:fillColor="#9945FF"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"/>
+    
+    <!-- Bubble icon - outer ring -->
+    <path
+        android:fillColor="#14F195"
+        android:pathData="M54,54m-28,0a28,28 0,1 1,56 0a28,28 0,1 1,-56 0"
+        android:strokeWidth="3"
+        android:strokeColor="#14F195"/>
+    
+    <!-- Inner bubble -->
+    <path
+        android:fillColor="#0B0F1A"
+        android:pathData="M54,54m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"/>
+    
+    <!-- Bubble highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.3"
+        android:pathData="M45,45m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"/>
+    
+    <!-- Small highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"
+        android:pathData="M60,48m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"/>
+    
+</vector>

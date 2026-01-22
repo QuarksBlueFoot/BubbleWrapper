@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Solana Brand Colors -->
+    <color name="solana_purple">#9945FF</color>
+    <color name="solana_green">#14F195</color>
+    <color name="solana_purple_dark">#7B3ACC</color>
+    <color name="solana_green_dark">#10C076</color>
+    
+    <!-- Dark Theme -->
+    <color name="bg_primary">#0B0F1A</color>
+    <color name="bg_secondary">#131B2E</color>
+    <color name="bg_tertiary">#1A2340</color>
+    <color name="surface">#0D1220</color>
+    <color name="surface_variant">#1E2A45</color>
+    
+    <!-- Text -->
+    <color name="text_primary">#E6E9F2</color>
+    <color name="text_secondary">#9AA5BF</color>
+    <color name="text_muted">#6B7A99</color>
+    
+    <!-- Status -->
+    <color name="success">#14F195</color>
+    <color name="warning">#FFB800</color>
+    <color name="error">#FF5C7A</color>
+    
+    <!-- Glass Effect -->
+    <color name="glass_bg">#0DFFFFFF</color>
+    <color name="glass_border">#1AFFFFFF</color>
+    
+    <!-- Launcher Icon -->
+    <color name="ic_launcher_background">#0B0F1A</color>
+</resources>
