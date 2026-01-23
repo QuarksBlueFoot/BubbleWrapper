@@ -20,11 +20,20 @@
 
 ### 🎨 Premium Styling (2025 Standards)
 
-- **Glassmorphism UI** - Frosted glass cards with `backdrop-filter: blur(20px)`, animated gradient borders
-- **Solana Brand Colors** - `#9945FF` (purple), `#14F195` (green)
-- **Animated Splash Screen** - Dark theme (#0B0F1A) with gradient orbs and glow effects
-- **Chrome Browser Preference** - Custom helper prefers Chrome with graceful fallback
-- **Mobile-First Navigation** - Bottom nav bar with safe-area padding and large tap targets
+- **Glassmorphism UI** - Frosted glass cards with `backdrop-filter: blur(20px)` and `saturate(180%)`, animated gradient borders
+- **Solana Brand Colors** - `#9945FF` (purple), `#14F195` (green), `#0B0F1A` (background)
+- **Enhanced Splash Screen** - Custom Android `layer-list` drawable ([splash_enhanced.xml](sample-pwa/android-twa-generated/app/src/main/res/drawable/splash_enhanced.xml)) with 300ms fade-out
+- **Chrome Browser Preference** - [ChromePreferredCustomTabs.java](sample-pwa/android-twa/patches/ChromePreferredCustomTabs.java) helper prefers Chrome with graceful fallback
+- **Mobile-First Navigation** - [BottomNav.tsx](sample-pwa/web/src/components/BottomNav.tsx) with safe-area padding and 48dp+ tap targets
+
+### 🚀 Technical Implementation
+
+- **PWA Plugin** - [VitePWA](sample-pwa/web/vite.config.ts) with Workbox runtime caching and auto-update registration
+- **Service Worker** - Automatic generation with precaching and offline support
+- **TWA Configuration** - [twa-manifest.json](sample-pwa/android-twa-generated/twa-manifest.json) with package ID, theme colors, and signing key path
+- **Manifest Auto-Fill** - BubbleWrapper app parses uploaded APKs to extract embedded TWA manifests
+- **Mobile Wallet Adapter 2.0** - Session persistence with DataStore in [WalletManager.kt](bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/wallet/WalletManager.kt)
+- **NFT Publishing** - [DappStorePublisher.kt](bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/network/DappStorePublisher.kt) handles Metaplex metadata v0.4.0 compliance
 
 ## 🚀 Quick Start
 
@@ -134,25 +143,34 @@ Output: `app-release-signed.apk`
 ## ✨ Features
 
 ### PWA Features
-- ✅ Service Worker with offline support (Workbox)
-- ✅ Web App Manifest with proper icons
-- ✅ Maskable icons (adaptive on Android)
-- ✅ Theme color consistency
-- ✅ Install prompt ready
+- ✅ **VitePWA Plugin** - Auto-generates manifest and service worker ([vite.config.ts](sample-pwa/web/vite.config.ts))
+- ✅ **Workbox Runtime Caching** - Google Fonts caching with `CacheFirst` strategy
+- ✅ **Maskable Icons** - Adaptive icons for Android with `purpose: "any maskable"`
+- ✅ **Auto-Update** - Service worker updates automatically with `registerType: "autoUpdate"`
+- ✅ **Offline Support** - Precaching of critical assets on install
 
 ### Premium Mobile UX
-- ✅ Bottom navigation (Material Design 3)
-- ✅ Safe-area insets (notch/island support)
-- ✅ Large touch targets (48dp+)
-- ✅ Glassmorphism card components
-- ✅ Animated gradient backgrounds
-- ✅ Hash-based back button navigation
+- ✅ **Bottom Navigation** - Fixed position with glassmorphism backdrop ([BottomNav.tsx](sample-pwa/web/src/components/BottomNav.tsx))
+- ✅ **Safe-Area Insets** - `env(safe-area-inset-*)` support for notches and gesture bars
+- ✅ **48dp+ Touch Targets** - Thumb-friendly tap areas per Material Design 3
+- ✅ **Glassmorphism Cards** - `backdrop-filter: blur(20px) saturate(180%)` with gradient borders
+- ✅ **Animated Gradients** - Framer Motion background animations with gradient orbs
+- ✅ **Hash Navigation** - Back button support without full-page reloads
 
 ### TWA Optimizations
-- ✅ Premium animated splash screen
-- ✅ Chrome preference with fallback
-- ✅ Digital Asset Links ready
-- ✅ Release keystore setup guide
+- ✅ **Enhanced Splash Screen** - Android layer-list with centered icon ([splash_enhanced.xml](sample-pwa/android-twa-generated/app/src/main/res/drawable/splash_enhanced.xml))
+- ✅ **Chrome Preference** - Custom helper with fallback ([ChromePreferredCustomTabs.java](sample-pwa/android-twa/patches/ChromePreferredCustomTabs.java))
+- ✅ **Digital Asset Links** - Pre-configured templates for fullscreen mode
+- ✅ **Release Keystore** - Setup guide in [SETUP.md](sample-pwa/SETUP.md)
+- ✅ **Bubblewrap CLI** - Automated TWA generation with proper prompts
+
+### BubbleWrapper App (9.8 MB)
+- ✅ **On-Device Keystore** - Generate signing keys directly on Android
+- ✅ **APK Metadata Parser** - Extract manifests from uploaded APKs ([ManifestParser.kt](bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/util/ManifestParser.kt))
+- ✅ **Auto-Fill Forms** - Parse embedded TWA manifests to pre-populate app details
+- ✅ **Wallet Persistence** - MWA 2.0 session management with DataStore ([WalletManager.kt](bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/wallet/WalletManager.kt))
+- ✅ **NFT Publishing** - Metaplex-compliant metadata with dApp Store spec v0.4.0 ([DappStorePublisher.kt](bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/network/DappStorePublisher.kt))
+- ✅ **SHA-256 Fingerprint** - Extract from keystores for Digital Asset Links
 
 ## 🎨 Design System
 

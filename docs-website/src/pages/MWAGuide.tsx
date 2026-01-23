@@ -59,10 +59,14 @@ export function MWAGuide() {
       <div className="space-y-2">
         <Section id="overview" title="Overview">
           <p className="text-[#8B92A5] mb-6">
-            Mobile Wallet Adapter (MWA) is the standard protocol for connecting Android apps to Solana wallets like Phantom, Solflare, and Backpack.
+            Mobile Wallet Adapter (MWA) is the standard protocol for connecting Android apps to Solana wallets like Phantom, Solflare, and Backpack. BubbleWrapper uses MWA 2.0 with session persistence via DataStore.
           </p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Callout type="info" title="Implementation Reference">
+            See <code className="text-[#9945FF]">bubble-wrapper-app/app/src/main/java/xyz/bluefoot/bubblewrapper/wallet/WalletManager.kt</code> for the complete implementation with state management and DataStore persistence.
+          </Callout>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
             {[
               { term: 'identityUri', desc: 'Absolute HTTPS URL of your dApp' },
               { term: 'iconUri', desc: 'RELATIVE path to your icon' },

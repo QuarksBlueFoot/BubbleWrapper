@@ -233,7 +233,7 @@ export function Home() {
       </section>
 
       {/* Sample App Section */}
-      <section className="max-w-4xl mx-auto px-4 pb-20">
+      <section className="max-w-4xl mx-auto px-4 pb-12">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -262,6 +262,96 @@ export function Home() {
             <span className="px-3 py-1 rounded-full text-xs bg-[#9945FF]/20 text-[#9945FF]">DAL Configured</span>
           </div>
         </motion.div>
+      </section>
+
+      {/* Production-Ready Optimizations */}
+      <section className="max-w-4xl mx-auto px-4 pb-20">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-2xl font-bold mb-6 flex items-center gap-3"
+        >
+          <span>⚡</span>
+          <span>Production-Ready Optimizations</span>
+        </motion.h2>
+        
+        <div className="grid gap-4">
+          {/* Enhanced Splash Screen */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="p-5 rounded-2xl glass"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-[#14F195]/20 shrink-0">
+                <span className="text-2xl">✨</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold mb-2">Enhanced Splash Screen</h3>
+                <p className="text-sm text-[#8B92A5] mb-3">
+                  Custom Android layer-list drawable with centered app icon on branded background. Configured with 300ms fade-out for smooth transitions.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#9945FF]">splash_enhanced.xml</code>
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#9945FF]">splashScreenFadeOutDuration: 300</code>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Chrome Browser Preference */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="p-5 rounded-2xl glass"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-[#9945FF]/20 shrink-0">
+                <span className="text-2xl">🌐</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold mb-2">Chrome Browser Preference</h3>
+                <p className="text-sm text-[#8B92A5] mb-3">
+                  Custom helper class that prefers Chrome for Custom Tabs when available, with graceful fallback to system-chosen provider for better consistency.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#14F195]">ChromePreferredCustomTabs.java</code>
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#14F195]">setPackage("com.android.chrome")</code>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Mobile-Intuitive Navigation */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="p-5 rounded-2xl glass"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-[#14F195]/20 shrink-0">
+                <span className="text-2xl">📱</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold mb-2">Mobile-Intuitive Navigation</h3>
+                <p className="text-sm text-[#8B92A5] mb-3">
+                  Fixed bottom navigation with safe-area padding, glassmorphism backdrop-filter, 48dp+ touch targets, and gradient active indicators for thumb-friendly UX.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#9945FF]">BottomNav.tsx</code>
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#9945FF]">env(safe-area-inset-bottom)</code>
+                  <code className="px-2 py-1 rounded text-xs bg-[#0B0F1A] text-[#9945FF]">backdrop-filter: blur(20px)</code>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Footer */}

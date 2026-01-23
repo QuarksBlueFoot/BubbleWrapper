@@ -42,14 +42,56 @@ export function TWAGuide() {
             Step 1: PWA Requirements ✅
           </h2>
           <p className="text-gray-300 mb-4">
-            Your website must be a valid Progressive Web App. Add these files to your site:
+            Your website must be a valid Progressive Web App. Modern frameworks like Vite make this easy with plugins.
           </p>
 
           <div className="space-y-6">
-            {/* manifest.json */}
+            {/* Option 1: Vite PWA Plugin (Recommended) */}
             <div>
               <h3 className="text-lg font-semibold text-purple-400 mb-2">
-                1.1 Create <code className="bg-gray-900 px-2 py-1 rounded">/manifest.json</code>
+                1.1 Vite + PWA Plugin (Recommended)
+              </h3>
+              <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
+                <code className="text-green-400">{`npm install -D vite-plugin-pwa
+
+// vite.config.ts
+import { VitePWA } from 'vite-plugin-pwa'
+
+export default defineConfig({
+  plugins: [
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'Your dApp Name',
+        short_name: 'dApp',
+        description: 'Your Solana dApp description',
+        start_url: '/',
+        display: 'standalone',
+        theme_color: '#0B0F1A',
+        background_color: '#0B0F1A',
+        icons: [
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+        ]
+      },
+      workbox: {
+        runtimeCaching: [
+          { urlPattern: /^https:\\/\\/fonts\\./, handler: 'CacheFirst' }
+        ]
+      }
+    })
+  ]
+})`}</code>
+              </pre>
+              <p className="text-gray-400 text-sm mt-2">
+                ✅ Used in MonkeMob sample - auto-generates manifest and service worker with Workbox.
+              </p>
+            </div>
+
+            {/* Option 2: Manual Manifest */}
+            <div>
+              <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                1.2 Manual <code className="bg-gray-900 px-2 py-1 rounded">/manifest.json</code> (Alternative)
               </h3>
               <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
                 <code className="text-green-400">{`{
@@ -82,46 +124,26 @@ export function TWAGuide() {
             {/* Link manifest in HTML */}
             <div>
               <h3 className="text-lg font-semibold text-purple-400 mb-2">
-                1.2 Link manifest in your HTML <code className="bg-gray-900 px-2 py-1 rounded">&lt;head&gt;</code>
+                1.3 Link manifest in your HTML <code className="bg-gray-900 px-2 py-1 rounded">&lt;head&gt;</code>
               </h3>
               <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
                 <code className="text-green-400">{`<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#9945FF">`}</code>
               </pre>
+              <p className="text-gray-400 text-sm mt-2">
+                (Vite PWA plugin handles this automatically)
+              </p>
             </div>
 
-            {/* Service Worker */}
+            {/* Service Worker Notes */}
             <div>
               <h3 className="text-lg font-semibold text-purple-400 mb-2">
-                1.3 Create <code className="bg-gray-900 px-2 py-1 rounded">/sw.js</code> (Service Worker)
+                1.4 Service Worker (Automatic with VitePWA)
               </h3>
-              <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
-                <code className="text-green-400">{`const CACHE_NAME = 'my-dapp-v1';
-
-self.addEventListener('install', (event) => {
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(fetch(event.request));
-});`}</code>
-              </pre>
-            </div>
-
-            {/* Register Service Worker */}
-            <div>
-              <h3 className="text-lg font-semibold text-purple-400 mb-2">
-                1.4 Register the Service Worker
-              </h3>
-              <pre className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm">
-                <code className="text-green-400">{`if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
-}`}</code>
-              </pre>
+              <p className="text-gray-400 text-sm">
+                VitePWA generates a Workbox-powered service worker with runtime caching, offline support, and precaching. 
+                No manual setup required! The plugin handles registration and updates automatically with <code className="bg-gray-900 px-2 py-1 rounded text-green-400">registerType: 'autoUpdate'</code>.
+              </p>
             </div>
           </div>
         </section>
@@ -132,7 +154,7 @@ self.addEventListener('fetch', (event) => {
             Step 2: Generate Android App with Bubblewrap 🤖
           </h2>
           <p className="text-gray-300 mb-4">
-            Use Google's Bubblewrap CLI to wrap your PWA as an Android app:
+            Use Google's Bubblewrap CLI to wrap your PWA as an Android app. MonkeMob sample uses this exact workflow.
           </p>
 
           <div className="space-y-4">
@@ -150,7 +172,7 @@ self.addEventListener('fetch', (event) => {
 bubblewrap init --manifest=https://yourdomain.com/manifest.json`}</code>
               </pre>
               <p className="text-gray-400 text-sm mt-2">
-                Follow the prompts to configure package name, signing key, etc.
+                Follow the prompts for package name (<code className="bg-gray-800 px-2 py-0.5 rounded text-green-400">me.monkemob.twa</code>), signing key, theme colors, etc. See <code className="bg-gray-800 px-2 py-0.5 rounded text-purple-400">sample-pwa/BUBBLEWRAP_PROMPTS.md</code> for exact answers used in MonkeMob.
               </p>
             </div>
 
@@ -160,7 +182,7 @@ bubblewrap init --manifest=https://yourdomain.com/manifest.json`}</code>
                 <code className="text-green-400">bubblewrap build</code>
               </pre>
               <p className="text-gray-400 text-sm mt-2">
-                This creates a signed APK in the output folder.
+                Creates a signed APK in <code className="bg-gray-800 px-2 py-0.5 rounded text-green-400">app-release-signed.apk</code>. The generated Android project is in <code className="bg-gray-800 px-2 py-0.5 rounded text-purple-400">sample-pwa/android-twa-generated/</code>.
               </p>
             </div>
           </div>

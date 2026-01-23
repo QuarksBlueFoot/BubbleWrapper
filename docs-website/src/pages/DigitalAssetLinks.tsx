@@ -33,9 +33,14 @@ export function DigitalAssetLinks() {
       <div className="space-y-2">
         <Section id="what" title="What is DAL?">
           <p className="text-[#8B92A5] mb-4">
-            Digital Asset Links (DAL) creates a verified connection between your website and Android app, enabling:
+            Digital Asset Links (DAL) creates a verified connection between your website and Android app, enabling fullscreen TWA mode without browser UI elements.
           </p>
-          <div className="grid gap-3 sm:grid-cols-2">
+          
+          <Callout type="info" title="MonkeMob Example">
+            The MonkeMob sample includes a pre-configured DAL file at <code className="text-[#9945FF]">sample-pwa/android-twa/assetlinks-monkemob.json</code> that you can use as a template.
+          </Callout>
+
+          <div className="grid gap-3 sm:grid-cols-2 mt-6">
             {[
               { icon: '📱', text: 'Fullscreen TWA (no browser bar)' },
               { icon: '🔒', text: 'Verified app-website association' },
@@ -52,10 +57,14 @@ export function DigitalAssetLinks() {
 
         <Section id="fingerprint" title="Get Your Signing Certificate">
           <p className="text-[#8B92A5] mb-4">
-            First, extract the SHA-256 fingerprint from your keystore:
+            Extract the SHA-256 fingerprint from your keystore. BubbleWrapper app can do this automatically, or use keytool:
           </p>
 
-          <h3 className="font-semibold mb-4">Debug keystore:</h3>
+          <Callout type="success" title="Easy Way: BubbleWrapper App">
+            The BubbleWrapper app includes a built-in tool to extract SHA-256 fingerprints from keystores - no command line needed!
+          </Callout>
+
+          <h3 className="font-semibold mb-4 mt-6">Debug keystore:</h3>
           <CodeBlock language="bash">{`keytool -list -v \\
   -keystore ~/.android/debug.keystore \\
   -alias androiddebugkey \\
