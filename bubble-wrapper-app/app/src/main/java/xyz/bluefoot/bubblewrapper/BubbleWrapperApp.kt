@@ -1358,7 +1358,7 @@ fun CreditsSection() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                // Profile image with gradient border
+                // MoonMan avatar with gradient border
                 Box(
                     modifier = Modifier
                         .size(52.dp)
@@ -1370,18 +1370,14 @@ fun CreditsSection() {
                         )
                         .padding(2.dp)
                 ) {
-                    Box(
+                    Image(
+                        painter = painterResource(id = R.drawable.moonman_avatar),
+                        contentDescription = "MoonMan Quark",
                         modifier = Modifier
                             .fillMaxSize()
-                            .clip(CircleShape)
-                            .background(BgSecondary),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "🌙",
-                            fontSize = 24.sp
-                        )
-                    }
+                            .clip(CircleShape),
+                        contentScale = ContentScale.Crop
+                    )
                 }
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
@@ -1417,25 +1413,15 @@ fun CreditsSection() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                // BF Labs logo placeholder
-                Box(
+                // BF Labs logo
+                Image(
+                    painter = painterResource(id = R.drawable.bf_labs_logo),
+                    contentDescription = "BF Labs",
                     modifier = Modifier
                         .size(44.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(
-                            Brush.linearGradient(
-                                colors = listOf(SolanaGreen, SolanaPurple)
-                            )
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "BF",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Black,
-                        color = Color.White
-                    )
-                }
+                        .clip(RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Fit
+                )
                 Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text(
@@ -1448,6 +1434,38 @@ fun CreditsSection() {
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold,
                         color = TextPrimary
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(20.dp))
+            
+            // Donation message
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            ) {
+                Text(
+                    text = "Support Development",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = TextPrimary
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Donate to ",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextMuted
+                    )
+                    Text(
+                        text = "solanadevdao.sol",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold,
+                        color = SolanaGreen
                     )
                 }
             }
