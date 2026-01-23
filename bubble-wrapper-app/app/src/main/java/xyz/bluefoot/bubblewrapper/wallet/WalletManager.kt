@@ -199,19 +199,30 @@ class WalletManager(private val context: Context) {
         }
         
         return try {
+            // Track if we need to update the auth token
+            var newAuthToken: String? = null
+            
             val result = walletAdapter.transact(sender) {
-                // Reauthorize with current session (optional but recommended)
-                // Note: iconUri must be RELATIVE per MWA spec
+                // Try to reauthorize with stored token first
+                // If it fails (e.g., different wallet than stored token), do fresh auth
                 try {
                     reauthorize(
                         identityUri = Uri.parse(APP_IDENTITY_URI),
-                        iconUri = Uri.parse(APP_IDENTITY_ICON),  // Relative path
+                        iconUri = Uri.parse(APP_IDENTITY_ICON),
                         identityName = APP_IDENTITY_NAME,
                         authToken = currentState.authToken
                     )
                 } catch (e: Exception) {
-                    // Reauthorization optional - continue with sign if it fails
-                    android.util.Log.w("WalletManager", "Reauth skipped: ${e.message}")
+                    // Reauth failed - likely wrong wallet or expired token
+                    // Do a fresh authorize to get new token from current wallet
+                    android.util.Log.w("WalletManager", "Reauth failed (${e.message}), doing fresh authorize")
+                    val authResult = authorize(
+                        identityUri = Uri.parse(APP_IDENTITY_URI),
+                        iconUri = Uri.parse(APP_IDENTITY_ICON),
+                        identityName = APP_IDENTITY_NAME
+                    )
+                    // Store new token to update after transaction
+                    newAuthToken = authResult.authToken
                 }
                 
                 // Sign and send the transaction
@@ -219,6 +230,14 @@ class WalletManager(private val context: Context) {
                 signAndSendTransactions(
                     transactions = arrayOf(transaction)
                 )
+            }
+            
+            // If we got a new auth token, update storage
+            newAuthToken?.let { token ->
+                context.walletDataStore.edit { prefs ->
+                    prefs[KEY_AUTH_TOKEN] = token
+                }
+                android.util.Log.i("WalletManager", "Updated stored auth token for current wallet")
             }
             
             when (result) {
@@ -257,20 +276,41 @@ class WalletManager(private val context: Context) {
         }
         
         return try {
-            val result = walletAdapter.transact(sender) { _ ->
-                // Note: iconUri must be RELATIVE per MWA spec
-                val reauth = reauthorize(
-                    identityUri = Uri.parse(APP_IDENTITY_URI),
-                    iconUri = Uri.parse(APP_IDENTITY_ICON),  // Relative path
-                    identityName = APP_IDENTITY_NAME,
-                    authToken = currentState.authToken
-                )
+            // Track if we need to update the auth token
+            var newAuthToken: String? = null
+            
+            val result = walletAdapter.transact(sender) {
+                // Try reauthorize first, fall back to fresh authorize if it fails
+                try {
+                    reauthorize(
+                        identityUri = Uri.parse(APP_IDENTITY_URI),
+                        iconUri = Uri.parse(APP_IDENTITY_ICON),
+                        identityName = APP_IDENTITY_NAME,
+                        authToken = currentState.authToken
+                    )
+                } catch (e: Exception) {
+                    // Reauth failed - do fresh authorize
+                    android.util.Log.w("WalletManager", "Reauth failed (${e.message}), doing fresh authorize")
+                    val authResult = authorize(
+                        identityUri = Uri.parse(APP_IDENTITY_URI),
+                        iconUri = Uri.parse(APP_IDENTITY_ICON),
+                        identityName = APP_IDENTITY_NAME
+                    )
+                    newAuthToken = authResult.authToken
+                }
                 
                 signMessages(
                     messages = arrayOf(message),
                     // Decode Base58 public key back to bytes for MWA
                     addresses = arrayOf(Base58.decode(currentState.publicKey))
                 )
+            }
+            
+            // Update stored auth token if we got a new one
+            newAuthToken?.let { token ->
+                context.walletDataStore.edit { prefs ->
+                    prefs[KEY_AUTH_TOKEN] = token
+                }
             }
             
             when (result) {
