@@ -4,10 +4,44 @@
     <!-- Pure black background -->
     <item android:drawable="@color/splash_background" />
     
-    <!-- Terminal full-screen background (solid for consistent coverage) -->
+    <!-- Terminal green base layer (full screen solid) -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#001a0d" />
+        </shape>
+    </item>
+    
+    <!-- Subtle gradient overlay for depth -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#00000000"
+                android:centerColor="#00150a"
+                android:endColor="#00000000"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- Tileable scanline pattern overlay -->
+    <item>
+        <bitmap
+            android:src="@drawable/scanline_pattern"
+            android:tileMode="repeat"
+            android:alpha="0.3" />
+    </item>
+    
+    <!-- Radial glow from center for terminal CRT effect -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:gradientRadius="40%p"
+                android:startColor="#002a15"
+                android:centerColor="#00150a"
+                android:endColor="#00000000"
+                android:type="radial"
+                android:centerX="0.5"
+                android:centerY="0.4" />
         </shape>
     </item>
     
