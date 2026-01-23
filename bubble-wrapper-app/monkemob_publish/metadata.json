@@ -1,0 +1,105 @@
+{
+  "name": "MonkeMob SagaMonke Companion Dapp",
+  "symbol": "MONKE",
+  "description": "The OG on-chain SagaMonke Battle Game. Battle your Saga Monkes and create your Saga Monke profile tied to your NFT. Create your profile tied to your Saga Monkes, display your identity, interests, and all your links! Each Saga Monke is allocated 1 profile page and (upcoming) 1 website page which will be a drag-and-drop builder that can be made as a blog, or project page in addition to your profile page. If you sell or trade your NFT, the profile will go with it, so be careful and hold on to your Monke - it's your identity!",
+  "image": "https://arweave.net/ZhJDiUDv0x4BFevw3IbRY_2dEigC5iqwaxTkK-uuICI",
+  "external_url": "https://monkemob.me",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "Game"
+    },
+    {
+      "trait_type": "Blockchain",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Platform",
+      "value": "Mobile"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://arweave.net/ZhJDiUDv0x4BFevw3IbRY_2dEigC5iqwaxTkK-uuICI",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/6YzBi5Ly-BaQu-MrxIAim1tLRbpB_AIUq3nchjtodns",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/9XwqcmiMGVJvuKxvMMMLeJx5YkPaVfTNLyxL54uupg4",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/wFePz6umxZE1Hp-7x2kpYAhTdeZqLaVOI7quSeZWdig",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/irJ64h0i-xvvQ1UUq_YdE_7GF2PeJHnl6PCDP7ZJ4zg",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/VHrbZDcWuhwtTDlXlIOi0p5E346XivnAKYNXiegwOZk",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://arweave.net/9ealqZqXgwchznt4lO2dabuKbOujSf3z8gtgnbVaPGs",
+        "type": "application/vnd.android.package-archive"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "GGVjQqnriuUdeLPoadfrV6CrpToYPmDquSBqdFpYhBts",
+        "share": 100
+      }
+    ]
+  },
+  "collection": {
+    "name": "MonkeMob",
+    "family": "MonkeMob"
+  },
+  "appMetadata": {
+    "packageId": "me.monkemob.twa",
+    "version": "1.0.0",
+    "versionCode": 1,
+    "category": "Games",
+    "publisher": "Bluefoot Labs",
+    "developer": "Bluefoot Labs",
+    "publisher_details": {
+      "name": "Bluefoot Labs",
+      "website": "https://monkemob.me",
+      "contact": "support@monkemob.me",
+      "support_email": "support@monkemob.me"
+    },
+    "screenshots": [
+      "https://arweave.net/9XwqcmiMGVJvuKxvMMMLeJx5YkPaVfTNLyxL54uupg4",
+      "https://arweave.net/wFePz6umxZE1Hp-7x2kpYAhTdeZqLaVOI7quSeZWdig",
+      "https://arweave.net/irJ64h0i-xvvQ1UUq_YdE_7GF2PeJHnl6PCDP7ZJ4zg",
+      "https://arweave.net/VHrbZDcWuhwtTDlXlIOi0p5E346XivnAKYNXiegwOZk"
+    ],
+    "icon": "https://arweave.net/ZhJDiUDv0x4BFevw3IbRY_2dEigC5iqwaxTkK-uuICI",
+    "banner": "https://arweave.net/6YzBi5Ly-BaQu-MrxIAim1tLRbpB_AIUq3nchjtodns",
+    "shortDescription": "MonkeMob",
+    "longDescription": "The OG on-chain SagaMonke Battle Game. Battle your Saga Monkes and create your Saga Monke profile tied to your NFT. Create your profile tied to your Saga Monkes, display your identity, interests, and all your links! Each Saga Monke is allocated 1 profile page and (upcoming) 1 website page which will be a drag-and-drop builder that can be made as a blog, or project page in addition to your profile page. If you sell or trade your NFT, the profile will go with it, so be careful and hold on to your Monke - it's your identity!",
+    "website": "https://monkemob.me",
+    "apk": "https://arweave.net/9ealqZqXgwchznt4lO2dabuKbOujSf3z8gtgnbVaPGs",
+    "android_package": "me.monkemob.twa",
+    "min_sdk": 24,
+    "target_sdk": 34,
+    "google_play_url": "",
+    "privacy_policy_url": "https://monkemob.me/privacy",
+    "license_url": "https://monkemob.me/license",
+    "support_url": "https://monkemob.me",
+    "supported_devices": [
+      "phone",
+      "tablet"
+    ],
+    "locales": [
+      "en"
+    ],
+    "release_date": "2026-01-23"
+  }
+}

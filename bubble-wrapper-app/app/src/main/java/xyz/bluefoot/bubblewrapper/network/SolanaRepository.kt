@@ -61,10 +61,8 @@ data class TransactionStatus(
  * Repository for Solana blockchain interactions
  */
 class SolanaRepository(
-    // MAINNET: Production ready with real Arweave URIs
-    private val rpcUrl: String = "https://api.mainnet-beta.solana.com"
-    // DEVNET: For testing only
-    // private val rpcUrl: String = "https://api.devnet.solana.com"
+    // Default URL, can be overridden by Proxy Mode
+    private var rpcUrl: String = "https://api.mainnet-beta.solana.com"
 ) {
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
@@ -72,6 +70,16 @@ class SolanaRepository(
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()
     
+    // Proxy configuration
+    private var proxyAccessToken: String? = null
+    private var isProxyMode: Boolean = false
+    
+    fun setProxyMode(accessToken: String, endpointUrl: String) {
+        this.proxyAccessToken = accessToken
+        this.rpcUrl = endpointUrl
+        this.isProxyMode = true
+    }
+
     private val gson = Gson()
     private val jsonMediaType = "application/json".toMediaType()
     
@@ -257,18 +265,38 @@ class SolanaRepository(
     }
     
     private fun createRpcRequest(method: String, params: List<Any>): Request {
-        val body = mapOf(
-            "jsonrpc" to "2.0",
-            "id" to 1,
-            "method" to method,
-            "params" to params
-        )
-        
-        return Request.Builder()
-            .url(rpcUrl)
-            .post(gson.toJson(body).toRequestBody(jsonMediaType))
-            .addHeader("Content-Type", "application/json")
-            .build()
+        if (isProxyMode) {
+            // New Proxy Format
+            // The params need to be unwrapped from the list if the proxy expects just "params" object
+            // based on the guide: params can be List or Map.
+            // But our internal methods send List<Any>.
+            
+            val proxyBody = mapOf(
+                "method" to method,
+                "params" to params
+            )
+            
+            return Request.Builder()
+                .url(rpcUrl.trimEnd('/') + "/api/external/rpc")
+                .post(gson.toJson(proxyBody).toRequestBody(jsonMediaType))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer $proxyAccessToken")
+                .build()
+        } else {
+            // Standard Direct RPC Format
+            val body = mapOf(
+                "jsonrpc" to "2.0",
+                "id" to 1,
+                "method" to method,
+                "params" to params
+            )
+            
+            return Request.Builder()
+                .url(rpcUrl)
+                .post(gson.toJson(body).toRequestBody(jsonMediaType))
+                .addHeader("Content-Type", "application/json")
+                .build()
+        }
     }
     
     private inline fun <reified T> executeRequest(request: Request): RpcResponse<T> {

@@ -59,7 +59,10 @@ data class PublishConfig(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PublishScreen(onBack: () -> Unit) {
+fun PublishScreen(
+    onBack: () -> Unit,
+    onTestPublishing: () -> Unit = {}
+) {
     var config by remember { mutableStateOf(PublishConfig()) }
     var currentStep by remember { mutableStateOf(0) }
     val context = LocalContext.current
@@ -293,6 +296,85 @@ fun PublishScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp)
         ) {
+            // Test Publishing Card - Prominent feature at top
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = SolanaPurple.copy(alpha = 0.12f)
+                ),
+                border = BorderStroke(1.dp, SolanaPurple.copy(alpha = 0.3f))
+            ) {
+                Column(modifier = Modifier.padding(20.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Filled.Science,
+                            contentDescription = null,
+                            tint = SolanaPurple,
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "🧪 Test Publishing Flow",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = TextPrimary
+                            )
+                            Text(
+                                text = "Test the complete dApp Store publishing workflow",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = TextMuted
+                            )
+                        }
+                    }
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    Button(
+                        onClick = onTestPublishing,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Transparent
+                        ),
+                        contentPadding = PaddingValues()
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(48.dp)
+                                .background(
+                                    Brush.horizontalGradient(
+                                        colors = listOf(SolanaPurple, SolanaPurpleDark)
+                                    )
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    Icons.Filled.RocketLaunch,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    "Open Publishing Test Screen",
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                        }
+                    }
+                </Column>
+            }
+            
+            Spacer(modifier = Modifier.height(20.dp))
+            
+            HorizontalDivider(color = Color.White.copy(alpha = 0.05f))
+            
+            Spacer(modifier = Modifier.height(20.dp))
+            
             // Progress indicator
             PublishProgressBar(currentStep = currentStep)
             

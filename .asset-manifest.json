@@ -1,0 +1,39 @@
+{
+  "assets": {
+    "bubble-wrapper-app/monkemob_publish/icon.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/icon.png",
+      "sha256": "VJyofWzt6oCsKsrjJOdCI63FF1T+B5gu/tF1Dk11wZE=",
+      "uri": "https://arweave.net/Y3tMx-1H8AjwBsU1Uh82bXXbgG0mgFmY2bzw9wRorz0"
+    },
+    "DOWNLOADS/monkemob-release.apk": {
+      "path": "DOWNLOADS/monkemob-release.apk",
+      "sha256": "s4AVnsq67YeuMD7FtjY3jnBpHGP7NdR+NqQnXC9wuE0=",
+      "uri": "https://arweave.net/-xXY8x60OlMAcsWq56_iEn-ZZ2mRVIDKixP6bsBwg08"
+    },
+    "bubble-wrapper-app/monkemob_publish/banner.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/banner.png",
+      "sha256": "B56vdOQH5t5Defv3Q3dBlZowNzSNgZl7ScyM1deDag8=",
+      "uri": "https://arweave.net/xFIVzDrMgPIjaTDcfdT20TZTJtT0G7ne6mRnCYF6fGM"
+    },
+    "bubble-wrapper-app/monkemob_publish/screen1.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/screen1.png",
+      "sha256": "x5PqTpW0zTkybcNiytFlv8mwiPV+0odD2w9mwb3HEMc=",
+      "uri": "https://arweave.net/FdDjs0DlGix_sDDMsajMjk8q4UknsLeQtfYJ_UfFtro"
+    },
+    "bubble-wrapper-app/monkemob_publish/screen2.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/screen2.png",
+      "sha256": "+HFlBl/6Ql2RSIQovzUMSn2e+XZThAhDY0AMbEfQgJ0=",
+      "uri": "https://arweave.net/bO6M6oNZjLDuFuxliA26cKUZFZLVugpFbvVDDlo0kbE"
+    },
+    "bubble-wrapper-app/monkemob_publish/screen3.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/screen3.png",
+      "sha256": "aZ55bxIVdWqbfwva0T+q6e+3UxW1c9ZDg3e/ObNDqF0=",
+      "uri": "https://arweave.net/nMSLIW4Xv190uRr_HXSgUxxLdtvHO2EWF3-r3aLoNS0"
+    },
+    "bubble-wrapper-app/monkemob_publish/screen4.png": {
+      "path": "bubble-wrapper-app/monkemob_publish/screen4.png",
+      "sha256": "WEHe8nvBQHC2xNemCiI640vAOaxa6unkAOxRXG7c7sw=",
+      "uri": "https://arweave.net/R9bVYtDvm4rrHjrfoqnh_QjIbRudKQHfGcHu-2P-qEc"
+    }
+  }
+}

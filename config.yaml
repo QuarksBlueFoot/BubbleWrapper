@@ -1,0 +1,58 @@
+publisher:
+  name: Bluefoot Labs
+  website: https://monkemob.me
+  email: support@monkemob.me
+  support_email: support@monkemob.me
+app:
+  name: MonkeMob
+  address: ADZWhSTQJoppJhapEbUS69yLg5HM2nJ322nenGxQqhMs
+  android_package: me.monkemob.twa
+  urls:
+    license_url: https://monkemob.me/terms
+    copyright_url: https://monkemob.me/copyright
+    privacy_policy_url: https://monkemob.me/privacy
+    website: https://monkemob.me
+  media:
+    - purpose: icon
+      uri: bubble-wrapper-app/monkemob_publish/icon.png
+release:
+  address: HjfgUUfyvwm7EWLcaxcxLdhn8A5tDZvbEkpDC4N7Kpx
+  media:
+    - purpose: icon
+      uri: bubble-wrapper-app/monkemob_publish/icon.png
+    - purpose: banner
+      uri: bubble-wrapper-app/monkemob_publish/banner.png
+    - purpose: screenshot
+      uri: bubble-wrapper-app/monkemob_publish/screen1.png
+    - purpose: screenshot
+      uri: bubble-wrapper-app/monkemob_publish/screen2.png
+    - purpose: screenshot
+      uri: bubble-wrapper-app/monkemob_publish/screen3.png
+    - purpose: screenshot
+      uri: bubble-wrapper-app/monkemob_publish/screen4.png
+  files:
+    - purpose: install
+      uri: DOWNLOADS/monkemob-release.apk
+  catalog:
+    en-US:
+      name: MonkeMob
+      short_description: Saga Monkes Battle Game
+      long_description: The OG on-chain SagaMonke Battle Game. Create your profile tied to your Saga Monkes NFT and battle other players to climb the leaderboard.
+      new_in_version: Initial release for Solana Mobile dApp Store with full Saga integration
+      saga_features: Native Mobile Wallet Adapter integration for seamless Saga experience
+  android_details:
+    cert_fingerprint: 094a9f4ebe0ed1a9e6a2f62ae205b8507a433a6a533563b23787b5b5c7d9b4cf
+    min_sdk: 24
+    version: '1'
+    version_code: 1
+    locales:
+      - en-US
+solana_mobile_dapp_publisher_portal:
+  google_store_package: ''
+  testing_instructions: MonkeMob is ready to test. Connect your Saga wallet, create a profile, and explore the battle features. No special test accounts needed.
+lastSubmittedVersionOnChain:
+  address: HjfgUUfyvwm7EWLcaxcxLdhn8A5tDZvbEkpDC4N7Kpx
+  version_code: 1
+  apk_hash: s4AVnsq67YeuMD7FtjY3jnBpHGP7NdR+NqQnXC9wuE0=
+lastUpdatedVersionOnStore:
+  address: HjfgUUfyvwm7EWLcaxcxLdhn8A5tDZvbEkpDC4N7Kpx

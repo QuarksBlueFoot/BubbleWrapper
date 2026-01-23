@@ -26,7 +26,11 @@ import java.security.SecureRandom
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters
 import org.bouncycastle.crypto.params.Ed25519PublicKeyParameters
 import org.bouncycastle.crypto.generators.Ed25519KeyPairGenerator
+import org.bouncycastle.crypto.signers.Ed25519Signer
 import org.bouncycastle.crypto.KeyGenerationParameters
+
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Helper class for publishing apps to the Solana dApp Store
@@ -38,6 +42,15 @@ class DappStorePublisher(
     private val solanaRepository: SolanaRepository
 ) {
     private val TAG = "DappStorePublisher"
+    
+    // Canary Backend for Proxy Auth
+    private val canaryAuthApi: CanaryAuthApi by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://api.canarymessenger.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CanaryAuthApi::class.java)
+    }
     
     companion object {
         // Solana Program IDs
@@ -104,17 +117,21 @@ class DappStorePublisher(
         onProgress: (UploadProgress) -> Unit
     ): PublishResult = withContext(Dispatchers.IO) {
         try {
+            // Step 0: Authenticate with Canary Backend for Secure RPC
+            onProgress(UploadProgress("Authenticating with Canary Network...", 0, 7))
+            authenticateWithCanary(config.walletAddress)
+
             // Step 1: Validate configuration
-            onProgress(UploadProgress("Validating configuration", 1, 6))
+            onProgress(UploadProgress("Validating configuration", 1, 7))
             validateConfig(config)
             
             // Step 2: Upload icon to storage
-            onProgress(UploadProgress("Uploading app icon", 2, 6))
+            onProgress(UploadProgress("Uploading app icon", 2, 7))
             val iconFile = getFileFromUri(config.iconPath) ?: throw IllegalArgumentException("Cannot access icon file")
             val iconUri = uploadToArweave(iconFile, "icon")
             
             // Step 3: Upload banner
-            onProgress(UploadProgress("Uploading banner", 3, 6))
+            onProgress(UploadProgress("Uploading banner", 3, 7))
             val bannerFile = if (config.bannerPath.isNotEmpty()) {
                 getFileFromUri(config.bannerPath) ?: throw IllegalArgumentException("Cannot access banner file")
             } else null
@@ -199,6 +216,66 @@ class DappStorePublisher(
         }
     }
     
+    /**
+     * Authenticate with Canary Backend to enable Secure RPC
+     */
+    private suspend fun authenticateWithCanary(walletAddress: String) {
+        if (walletAddress.isEmpty()) return
+
+        try {
+            Log.d(TAG, "🔐 Starting Canary Auth for $walletAddress")
+            
+            // 1. Get Challenge
+            val challengeResponse = canaryAuthApi.getChallenge(ChallengeRequest(walletAddress))
+            if (!challengeResponse.isSuccessful) {
+                Log.w(TAG, "Failed to get auth challenge: ${challengeResponse.code()}. Proceeding with public RPC.")
+                return
+            }
+            
+            val messageToSign = challengeResponse.body()?.message
+                ?: throw Exception("Empty challenge message")
+                
+            Log.d(TAG, "📝 Signing challenge: $messageToSign")
+            
+            // 2. Sign Challenge with Wallet Adapter
+            val sender = walletManager.getActivityResultSender() 
+                ?: throw Exception("No Activity sender available for auth")
+            
+            val signatureBytes = walletManager.signMessage(
+                sender,
+                messageToSign.toByteArray(Charsets.UTF_8)
+            ).getOrThrow()
+            
+            val signatureBase58 = Base58.encode(signatureBytes)
+            
+            // 3. Verify Signature
+            val verifyResponse = canaryAuthApi.verifySignature(
+                VerifyRequest(
+                    walletAddress = walletAddress,
+                    signature = signatureBase58,
+                    message = messageToSign
+                )
+            )
+            
+            if (verifyResponse.isSuccessful && verifyResponse.body() != null) {
+                val token = verifyResponse.body()!!.accessToken
+                Log.d(TAG, "✅ Authenticated! Switching to Secure RPC Proxy.")
+                
+                // 4. Update Repository to use Proxy
+                solanaRepository.setProxyMode(
+                    accessToken = token,
+                    endpointUrl = "https://node.canarymessenger.com"
+                )
+            } else {
+                Log.e(TAG, "Auth verification failed: ${verifyResponse.errorBody()?.string()}")
+            }
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Canary Auth failed", e)
+            // Fallback to public RPC is implicit if we don't call setProxyMode
+        }
+    }
+
     /**
      * Upload file to Arweave using Bundlr/Irys
      * For production, you'd use a proper Arweave upload service
@@ -958,7 +1035,53 @@ class DappStorePublisher(
         )
         
         Log.d(TAG, "Message built: ${message.size} bytes")
-        return message
+        
+        // Sign the transaction with local signers (e.g., Mint Keypair)
+        // MWA expects a full transaction payload if we are providing signatures
+        val signatures = mutableListOf<ByteArray>()
+        
+        // Iterate over all required signers (Writable + Readonly) in order
+        val requiredSigners = signerWritable + signerReadonly
+        
+        requiredSigners.forEach { accountPubkey ->
+            // Check if it's the fee payer (usually index 0)
+            if (accountPubkey.contentEquals(feePayer)) {
+                 // Fee Payer signature is handled by wallet - push empty bytes
+                 signatures.add(ByteArray(64))
+            } else {
+                // Find matching local keypair
+                val signer = signers.find { it.publicKey.contentEquals(accountPubkey) }
+                if (signer != null) {
+                    // Sign the message
+                    val signerEngine = Ed25519Signer()
+                    val privKeyParams = Ed25519PrivateKeyParameters(signer.privateKey, 0)
+                    signerEngine.init(true, privKeyParams)
+                    signerEngine.update(message, 0, message.size)
+                    signatures.add(signerEngine.generateSignature())
+                } else {
+                    // This signer is required but not provided! 
+                    // This happens if instructions require a signer we don't have local key for (and isn't fee payer)
+                    Log.e(TAG, "Missing signer for ${Base58.encode(accountPubkey)}")
+                    signatures.add(ByteArray(64))
+                }
+            }
+        }
+        
+        // Construct final transaction: [Count] [Sig1] [Sig2]... [Message]
+        val buffer = ByteBuffer.allocate(2048 + message.size).order(ByteOrder.LITTLE_ENDIAN)
+        
+        // 1. Signature count (Compact-U16)
+        encodeCompactU16(buffer, signatures.size)
+        // 2. Signatures
+        signatures.forEach { buffer.put(it) }
+        // 3. Message
+        buffer.put(message)
+        
+        val transactionBytes = ByteArray(buffer.position())
+        buffer.rewind()
+        buffer.get(transactionBytes)
+        
+        return transactionBytes
     }
     
     /**

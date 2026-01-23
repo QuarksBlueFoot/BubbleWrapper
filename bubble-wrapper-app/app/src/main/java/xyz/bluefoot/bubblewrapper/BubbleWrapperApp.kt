@@ -27,6 +27,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.bluefoot.bubblewrapper.ui.theme.*
 import xyz.bluefoot.bubblewrapper.ui.screens.*
+import xyz.bluefoot.bubblewrapper.testing.PublishingTestScreen
+import xyz.bluefoot.bubblewrapper.network.SolanaRepository
+import xyz.bluefoot.bubblewrapper.wallet.WalletManager
 
 // Guide screen types for navigation
 sealed class GuideScreen {
@@ -58,6 +61,7 @@ sealed class WizardScreen {
     object None : WizardScreen()
     object KeystoreGenerator : WizardScreen()
     object TwaBuildWizard : WizardScreen()
+    object PublishingTest : WizardScreen()
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,6 +75,11 @@ fun BubbleWrapperApp() {
     // State for keystore/TWA wizard flow
     var selectedKeystorePath by remember { mutableStateOf("") }
     var selectedFingerprint by remember { mutableStateOf("") }
+    
+    // Initialize services for publishing test
+    val context = LocalContext.current
+    val walletManager = remember { WalletManager.getInstance(context) }
+    val solanaRepository = remember { SolanaRepository() }
     
     // Handle wizard screens first
     when (currentWizard) {
@@ -96,6 +105,14 @@ fun BubbleWrapperApp() {
                 },
                 currentKeystorePath = selectedKeystorePath,
                 currentFingerprint = selectedFingerprint
+            )
+            return
+        }
+        is WizardScreen.PublishingTest -> {
+            PublishingTestScreen(
+                onBack = { currentWizard = WizardScreen.None },
+                walletManager = walletManager,
+                solanaRepository = solanaRepository
             )
             return
         }
@@ -159,8 +176,10 @@ fun BubbleWrapperApp() {
                     onConfigChange = { pwaConfig = it },
                     onNext = { currentScreen = 3 }
                 )
-                2 -> PublishScreen(
-                    onBack = { currentScreen = 0 }
+                2 -> PublishingTestScreen(
+                    onBack = { currentScreen = 0 },
+                    walletManager = walletManager,
+                    solanaRepository = solanaRepository
                 )
                 3 -> BuildScreen(
                     config = pwaConfig,
