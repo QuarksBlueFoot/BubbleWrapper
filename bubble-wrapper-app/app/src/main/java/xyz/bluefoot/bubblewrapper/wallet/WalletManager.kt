@@ -199,30 +199,34 @@ class WalletManager(private val context: Context) {
         }
         
         return try {
-            val result = walletAdapter.transact(sender) { _ ->
-                // Reauthorize if needed
+            val result = walletAdapter.transact(sender) {
+                // Reauthorize with current session (optional but recommended)
                 // Note: iconUri must be RELATIVE per MWA spec
-                val reauth = reauthorize(
-                    identityUri = Uri.parse(APP_IDENTITY_URI),
-                    iconUri = Uri.parse(APP_IDENTITY_ICON),  // Relative path
-                    identityName = APP_IDENTITY_NAME,
-                    authToken = currentState.authToken
-                )
+                try {
+                    reauthorize(
+                        identityUri = Uri.parse(APP_IDENTITY_URI),
+                        iconUri = Uri.parse(APP_IDENTITY_ICON),  // Relative path
+                        identityName = APP_IDENTITY_NAME,
+                        authToken = currentState.authToken
+                    )
+                } catch (e: Exception) {
+                    // Reauthorization optional - continue with sign if it fails
+                    android.util.Log.w("WalletManager", "Reauth skipped: ${e.message}")
+                }
                 
                 // Sign and send the transaction
-                val signResult = signAndSendTransactions(
+                // CRITICAL: Return the result from this lambda - the wallet stays open until this completes!
+                signAndSendTransactions(
                     transactions = arrayOf(transaction)
                 )
-                
-                signResult
             }
             
             when (result) {
                 is TransactionResult.Success -> {
-                    val signatures = result.payload.signatures
-                    if (signatures.isNotEmpty()) {
+                    val signResult = result.payload
+                    if (signResult.signatures.isNotEmpty()) {
                         // MWA returns raw signature bytes - encode as Base58 for Solana
-                        val signature = Base58.encode(signatures.first())
+                        val signature = Base58.encode(signResult.signatures.first())
                         Result.success(signature)
                     } else {
                         Result.failure(Exception("No signature returned"))
