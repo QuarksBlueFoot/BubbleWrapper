@@ -242,25 +242,82 @@ export function Home() {
         >
           <span>🐵</span>
           <span>MonkeMob Sample App</span>
+          <span className="text-xs px-2 py-1 rounded-full bg-[#14F195]/20 text-[#14F195]">Published ✅</span>
         </motion.h2>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="p-6 rounded-2xl glass"
+          className="p-6 rounded-2xl glass space-y-4"
         >
-          <p className="text-[#8B92A5] mb-4">
-            A complete example TWA app with premium mobile UI, glassmorphism design, and Solana branding. 
-            Use it as a template for your own dApp!
+          <p className="text-[#8B92A5]">
+            A production-ready sample TWA app successfully published to Solana Mobile dApp Store.
+            Showcases all required deliverables with premium mobile UI, glassmorphism design, and Solana branding.
           </p>
+          
+          {/* Live Status */}
+          <div className="p-4 rounded-xl bg-[#14F195]/10 border border-[#14F195]/20">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-[#14F195]">●</span>
+              <span className="font-semibold text-sm">Live on Mainnet</span>
+            </div>
+            <div className="space-y-1 text-xs text-[#8B92A5]">
+              <div className="flex items-center gap-2">
+                <span className="text-[#8B92A5]">App NFT:</span>
+                <code className="px-2 py-0.5 rounded bg-[#0B0F1A] text-[#14F195] font-mono">ADZWhSTQJoppJhapEbUS69yLg5HM2nJ322nenGxQqhMs</code>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8B92A5]">Package:</span>
+                <code className="px-2 py-0.5 rounded bg-[#0B0F1A] text-[#9945FF] font-mono">me.monkemob.twa</code>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8B92A5]">PWA:</span>
+                <a href="https://monkemob.me" target="_blank" rel="noopener noreferrer" className="px-2 py-0.5 rounded bg-[#0B0F1A] text-[#9945FF] hover:text-[#14F195] font-mono">
+                  monkemob.me ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Deliverables Checklist */}
+          <div className="space-y-2">
+            <h4 className="font-medium text-sm">✅ All Deliverables Met:</h4>
+            <div className="grid gap-2">
+              <div className="flex items-start gap-2 text-sm">
+                <span className="text-[#14F195] shrink-0">✓</span>
+                <span className="text-[#8B92A5]">
+                  <strong className="text-white">Improved splash screen:</strong> Custom Android layer-list with terminal aesthetic, gold-framed icon, falling banana animations
+                </span>
+              </div>
+              <div className="flex items-start gap-2 text-sm">
+                <span className="text-[#14F195] shrink-0">✓</span>
+                <span className="text-[#8B92A5]">
+                  <strong className="text-white">Chrome browser preference:</strong> TWA auto-prefers Chrome with fallback to system default
+                </span>
+              </div>
+              <div className="flex items-start gap-2 text-sm">
+                <span className="text-[#14F195] shrink-0">✓</span>
+                <span className="text-[#8B92A5]">
+                  <strong className="text-white">Mobile-intuitive navigation:</strong> Portrait-first, safe-area insets, 44dp+ touch targets, glassmorphism UI
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Tech Stack */}
           <div className="flex flex-wrap gap-2">
             <span className="px-3 py-1 rounded-full text-xs bg-[#9945FF]/20 text-[#9945FF]">Vite + React</span>
             <span className="px-3 py-1 rounded-full text-xs bg-[#14F195]/20 text-[#14F195]">TypeScript</span>
             <span className="px-3 py-1 rounded-full text-xs bg-[#9945FF]/20 text-[#9945FF]">PWA Ready</span>
             <span className="px-3 py-1 rounded-full text-xs bg-[#14F195]/20 text-[#14F195]">TWA Wrapped</span>
             <span className="px-3 py-1 rounded-full text-xs bg-[#9945FF]/20 text-[#9945FF]">DAL Configured</span>
+            <span className="px-3 py-1 rounded-full text-xs bg-[#14F195]/20 text-[#14F195]">Bubblewrap CLI</span>
           </div>
+
+          <p className="text-xs text-[#8B92A5] italic">
+            💡 Use MonkeMob as your template for building mobile-optimized TWA apps!
+          </p>
         </motion.div>
       </section>
 

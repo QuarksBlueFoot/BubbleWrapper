@@ -69,12 +69,53 @@ BubbleWrapper/
 
 ## 🧪 Sample PWA — MonkeMob
 
-This repository includes a full example PWA called **MonkeMob** located in `sample-pwa/`. The project contains:
-- `sample-pwa/web/` — production-ready PWA (Vite + React + TypeScript).
-- `sample-pwa/android-twa/` — Bubblewrap/TWA wrapper source and example manifests (MonkeMob-specific configs).
-- `sample-pwa/android-twa-generated/` — generated Android project and resources (icons, splash, launcher).
+This repository includes a **production-ready sample app** called **MonkeMob** (`sample-pwa/`) that showcases all required deliverables and optimizations:
 
-Use the MonkeMob sample as a template for building and publishing your own TWA apps.
+### ✅ Deliverables Met
+
+**✨ Highly Mobile-Optimized PWA Using Bubblewrap Template**
+- Production-ready TWA wrapper published to Solana Mobile dApp Store
+- Successfully uploaded with App NFT: `ADZWhSTQJoppJhapEbUS69yLg5HM2nJ322nenGxQqhMs`
+- Live at: `https://monkemob.me` (package: `me.monkemob.twa`)
+
+**🎨 Required Optimizations Implemented:**
+
+1. **Improved Splash Screen Styling**
+   - Custom Android `layer-list` with animated terminal aesthetic
+   - Circular gold-framed app icon (120dp in 140dp frame)
+   - Saga MonkeMob brand logo (180dp) positioned at top
+   - 6 falling banana animations with varying opacity
+   - Retro pixel font (Press Start 2P) for branding
+   - Fast 300ms fade-out for smooth transition
+   - 📄 Implementation: [splash_terminal.xml](sample-pwa/android-twa-generated/app/src/main/res/drawable/splash_terminal.xml)
+
+2. **Default to Chrome Browser, Fall Back to System Default**
+   - TWA automatically prefers Chrome for best performance
+   - Automatic fallback to Chromium-based browsers if Chrome unavailable
+   - Custom tabs fallback for devices without TWA support
+   - Handled natively by `androidbrowserhelper:2.6.2` library
+   - 📄 Configuration: [twa-manifest.json](sample-pwa/android-twa-generated/twa-manifest.json)
+
+3. **Mobile-Intuitive Navigation and Layouts**
+   - **Portrait-first orientation** with adaptive handling
+   - **Safe area insets** for notched/punch-hole displays (`viewport-fit: cover`)
+   - **Touch-optimized UI** with no tap highlight flash and 44x44dp minimum targets
+   - **Glassmorphism design** with frosted panels and gradient backgrounds
+   - **Bottom navigation** with safe-area padding for gesture areas
+   - **Responsive layouts** optimized for thumb-friendly interaction
+   - 📄 Styles: [styles.css](sample-pwa/web/src/styles.css), [BottomNav.tsx](sample-pwa/web/src/components/BottomNav.tsx)
+
+### 📁 Project Structure
+- `sample-pwa/web/` — Production PWA (Vite + React + TypeScript)
+- `sample-pwa/android-twa/` — Bubblewrap/TWA source with MonkeMob configs
+- `sample-pwa/android-twa-generated/` — Generated Android project with custom splash, icons, and launcher
+
+### 📖 Complete Documentation
+- [MOBILE_OPTIMIZATIONS.md](sample-pwa/MOBILE_OPTIMIZATIONS.md) — Detailed optimization breakdown
+- [README.md](sample-pwa/README.md) — Quick start and deliverables checklist
+- [PUBLISHING_GUIDE.md](sample-pwa/docs/PUBLISHING_GUIDE.md) — End-to-end dApp Store submission
+
+**Use MonkeMob as your template** for building and publishing mobile-optimized TWA apps to the Solana dApp Store.
 
 ## 📚 Local Documentation Website
 
