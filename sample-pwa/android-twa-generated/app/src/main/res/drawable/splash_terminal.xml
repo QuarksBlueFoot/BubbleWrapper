@@ -4,15 +4,10 @@
     <!-- Pure black background -->
     <item android:drawable="@color/splash_background" />
     
-    <!-- Terminal green scanline effect -->
+    <!-- Terminal full-screen background (solid for consistent coverage) -->
     <item>
         <shape android:shape="rectangle">
-            <gradient
-                android:angle="90"
-                android:centerColor="#00000000"
-                android:endColor="#001a0d"
-                android:startColor="#001a0d"
-                android:type="linear" />
+            <solid android:color="#001a0d" />
         </shape>
     </item>
     
