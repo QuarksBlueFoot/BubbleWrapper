@@ -200,9 +200,9 @@ fun BottomNavBar(
 ) {
     val items = listOf(
         NavItem("Home", Icons.Filled.Home, Icons.Outlined.Home),
-        NavItem("Configure", Icons.Filled.Settings, Icons.Outlined.Settings),
+        NavItem("PWA", Icons.Filled.Android, Icons.Outlined.Android),
         NavItem("Publish", Icons.Filled.CloudUpload, Icons.Outlined.CloudUpload),
-        NavItem("Build", Icons.Filled.Build, Icons.Outlined.Build),
+        NavItem("CLI Guide", Icons.Filled.Terminal, Icons.Outlined.Terminal),
         NavItem("Docs", Icons.Filled.MenuBook, Icons.Outlined.MenuBook)
     )
     
