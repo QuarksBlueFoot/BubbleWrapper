@@ -3,6 +3,6 @@
   "target": {
     "namespace": "android_app",
     "package_name": "me.monkemob.twa",
-    "sha256_cert_fingerprints": ["REPLACE_WITH_MONKEMOB_KEYSTORE_SHA256"]
+    "sha256_cert_fingerprints": ["09:4A:9F:4E:BE:0E:D1:A9:E6:A2:F6:2A:E2:05:B8:50:7A:43:3A:6A:53:35:63:B2:37:87:B5:B5:C7:D9:B4:CF"]
   }
 }]
