@@ -11,32 +11,24 @@
         </shape>
     </item>
     
-    <!-- Subtle gradient overlay for depth -->
+    <!-- Subtle horizontal scanline effect -->
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:angle="135"
-                android:startColor="#00000000"
-                android:centerColor="#00150a"
-                android:endColor="#00000000"
+                android:angle="90"
+                android:startColor="#002a15"
+                android:centerColor="#001a0d"
+                android:endColor="#002a15"
                 android:type="linear" />
         </shape>
-    </item>
-    
-    <!-- Tileable scanline pattern overlay -->
-    <item>
-        <bitmap
-            android:src="@drawable/scanline_pattern"
-            android:tileMode="repeat"
-            android:alpha="0.3" />
     </item>
     
     <!-- Radial glow from center for terminal CRT effect -->
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:gradientRadius="40%p"
-                android:startColor="#002a15"
+                android:gradientRadius="50%p"
+                android:startColor="#003a1f"
                 android:centerColor="#00150a"
                 android:endColor="#00000000"
                 android:type="radial"
