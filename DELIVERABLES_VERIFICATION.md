@@ -209,6 +209,8 @@
 | **Chrome Preference** | ✅ Complete | `twa-manifest.json` | README.md L99-104 |
 | **Mobile Navigation** | ✅ Complete | `styles.css`, `BottomNav.tsx` | README.md L106-113 |
 
+Note: During verification we built a test APK `v1.2` (versionCode `3`) and applied a crash fix to the splash drawable: the tileable bitmap scanline was removed and replaced by gradient layers to avoid a `Resources$NotFoundException` on some devices. The build scripts were also updated to replace `jcenter()` with `mavenCentral()` and to remove `package` attribute from `AndroidManifest.xml` for Gradle 9.0 compatibility.
+
 ---
 
 ## 📖 Documentation Coverage

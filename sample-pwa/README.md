@@ -25,6 +25,8 @@ This sample app demonstrates **all required deliverables** for a mobile-optimize
 - ✅ Live PWA: `https://monkemob.me`
 - ✅ Premium 2025 UI with glassmorphism and Solana branding
 
+Note: The test APK for MonkeMob has been built as version `1.2` (versionCode `3`). Recent fixes replaced a bitmap-based scanline with a gradient implementation to avoid a runtime crash on startup, and the project build now uses `mavenCentral()`.
+
 ### 2️⃣ Improved Splash Screen Styling
 - ✅ Custom Android `layer-list` drawable with terminal aesthetic
 - ✅ Circular gold-framed app icon (120dp in 140dp gold frame)

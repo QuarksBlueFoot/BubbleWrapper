@@ -173,6 +173,9 @@ Use these settings:
 - **Package ID:** `xyz.bluefoot.bubblewrapper.sample`
 - **Display mode:** `standalone`
 
+Note: recent maintenance updated the build to use `mavenCentral()` (replacing deprecated `jcenter()`) and removed the `package` attribute from `AndroidManifest.xml` to be Gradle 9.0 compatible.
+The sample TWA APK used for splash testing is version `1.2` (versionCode `3`).
+
 ### 3. Build APK
 
 ```bash

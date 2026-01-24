@@ -192,6 +192,13 @@ export function Home() {
         </motion.div>
       </section>
 
+        {/* APK Status */}
+        <section className="max-w-4xl mx-auto px-4 pb-8">
+          <div className="p-4 rounded-2xl glass">
+            <p className="text-sm text-[#8B92A5]">Test APK built: <strong>v1.2</strong> (versionCode 3). Includes splash crash fix (replaced bitmap scanlines with gradient layers) and Gradle repo updates for compatibility (mavenCentral).</p>
+          </div>
+        </section>
+
       {/* BubbleWrapper App Capabilities */}
       <section className="max-w-4xl mx-auto px-4 pb-12">
         <motion.h2

@@ -116,6 +116,10 @@ This sample app showcases a **highly mobile-optimized PWA** using the Bubblewrap
 | [index.html](web/index.html) | PWA HTML with mobile meta tags |
 | [styles.css](web/src/styles.css) | Mobile-optimized glassmorphism styles |
 
+### Notes on Splash Implementation
+- The splash previously used a tileable shape injected as a `<bitmap>` which caused a runtime crash on some devices. It was replaced with layered gradient shapes (solid terminal base + linear scanline gradient + radial glow) to ensure full-screen coverage and avoid density/resource parsing issues.
+- The APK built for the splash test is `v1.2` (versionCode `3`).
+
 ## 🚀 Building the APK
 
 ```bash
